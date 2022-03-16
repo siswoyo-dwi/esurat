@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="/images/backoffice/shortcut_icon.ico" type="image/png">
+  <!-- Core CSS Backoffice -->
+  <title>E - Office Bappelbangda Kabupaten Sukoharjo | E - Office</title>
+  <link href="/stylesheets/backoffice/style.css" rel="stylesheet">
+  <link href="/stylesheets/backoffice/theme.css" rel="stylesheet">
+  <link href="/stylesheets/backoffice/ui.css" rel="stylesheet">
+  <!-- End core CSS Backoffice -->
+
+  <!-- Custom CSS Backoffice -->
+  <link href="/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
+  <link href="/plugins/datatables/dataTables.css" rel="stylesheet">
+  <link href="/plugins/step-form-wizard/css/step-form-wizard.min.css" rel="stylesheet">
+  <link href="/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css">
+  <link href='/plugins/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+  <link href="/plugins/fancybox/css/jquery.fancybox.css" rel="stylesheet">
+  <!-- End Custom CSS Backoffice -->
+
+  <!-- Core JS Backoffice -->
+  <script src='/plugins/fullcalendar/lib/moment.min.js'></script>
+  
+  <script src="/plugins/jquery/jquery-1.11.1.min.js"></script>
+  <script src="/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+  <script src="/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
+  <script src="/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+  <script src="/plugins/fullcalendar/fullcalendar.min.js"></script>
+  <script src="/plugins/fancybox/js/jquery.fancybox.js"></script>
+
+  
+
+  <!-- End core JS Backoffice -->
+
+  
+
+  <style type="text/css">
+    .table thead {
+      background-color: #F0F4F8;
+    }
+
+    .table .list-inline li a {
+      margin-right: 0px;
+    }
+
+    .table .list-inline .separator {
+      margin-left: 0px;
+      margin-right: 0px;
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+
+    .table-no-border .table-bordered>thead>tr>th,
+    .table-no-border .table-bordered>tbody>tr>th,
+    .table-no-border .table-bordered>tfoot>tr>th,
+    .table-no-border .table-bordered>thead>tr>td,
+    .table-no-border .table-bordered>tbody>tr>td,
+    .table-no-border .table-bordered>tfoot>tr>td {
+      border: hidden;
+    }
+
+    /*--------------------------------------------------------------------- 
+      Tab 
+    -----------------------------------------------------------------------*/
+    .tab .nav-tabs {
+      width: 18%;
+      float: left;
+      display: inline-block;
+      border: none;
+      margin-right: 4%;
+    }
+
+    .tab .nav-tabs li {
+      display: inline-block;
+      width: 100%;
+      padding: 0;
+      margin: 0px;
+      text-align: center;
+    }
+
+    .tab .nav-tabs li a {
+      border: 1px solid #dddddd;
+      color: #353535;
+      border-bottom: none;
+      background: #fff;
+      padding: 15px;
+      border-radius: 0;
+      margin: 0px;
+      -webkit-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+    }
+
+    .tab .nav-tabs li:last-child a {
+      border-bottom: 1px solid #dddddd;
+    }
+
+    .tab .nav-tabs li a i {
+      font-size: 38px;
+      display: inline-block;
+      width: 100%;
+      line-height: normal;
+    }
+
+    .tab .nav-tabs li a span {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .tab .nav-tabs li.active a:before {
+      position: absolute;
+      margin-top: -25px;
+      content: "\f0da";
+      font-family: fontawesome;
+      right: -10px;
+      top: 50%;
+      font-size: 36px;
+      color: #002863;
+    }
+
+    .tab .nav-tabs li.active a,
+    .tab .nav-tabs li a:hover,
+    .top_dark .nav-tabs li.active a:hover>a:focus {
+      background: #002863;
+      color: #FE9E2E;
+      border: 1px solid #073D7D;
+      border-bottom: none;
+      border-right: none;
+      position: relative;
+    }
+
+    /*---------------------- 
+      TAB content 
+    -----------------------*/
+    .tab .tab-content {
+      width: 78%;
+      float: left;
+    }
+
+    .tab .tab-content .img-left {
+      float: left;
+      margin-right: 15px;
+      margin-bottom: 15px;
+    }
+
+    .tab .tab-content .img-right {
+      float: right;
+      margin-left: 15px;
+      margin-bottom: 15px;
+    }
+
+    .tab .tab-content .title {
+      font-size: 28px;
+      font-weight: 500;
+      color: #ffd200;
+      line-height: normal;
+      margin-top: 0px;
+      margin-bottom: 15px;
+    }
+
+    .tab .tab-content .list li {
+      margin-bottom: 5px;
+    }
+
+    .tab .tab-content .list li i {
+      margin-right: 5px;
+    }
+
+    .list li i {
+      color: #ffd200;
+    }
+
+    .tab .tab-content img.img-left {
+      margin-bottom: 0;
+    }
+
+    /* Dark BG */
+    .text-white .tab.tab-default .nav-tabs li a {
+      background: none;
+      color: #f5f5f5;
+    }
+
+    .text-white .tab.tab-default .nav-tabs li.active a,
+    .text-white .tab.tab-default .nav-tabs li a:hover,
+    .text-white .tab.tab-default .nav-tabs li.active a:hover>a:focus {
+      background: #ffd200;
+    }
+
+
+    /*------------------------------------ 
+      TAB - Border 
+    -------------------------------------*/
+    .tab.tab-bor {
+      border: 1px solid #dddddd;
+    }
+
+    .tab.tab-bor .nav-tabs {
+      width: 100%;
+      margin: 0px;
+    }
+
+    .tab.tab-bor .nav-tabs li {
+      margin-right: 0;
+      width: 20%;
+      border-bottom: 1px solid #e6e6e6;
+      border-right: 1px solid #e6e6e6;
+      background: #f9f9f9;
+    }
+
+    .tab.tab-bor .nav-tabs li:last-child {
+      margin-right: 0px;
+      border-right: none;
+    }
+
+    .tab.tab-bor .nav-tabs li.active {
+      border-bottom: none;
+      background: none;
+    }
+
+    .tab.tab-bor .nav-tabs li a {
+      border: none;
+      display: table;
+      background: none;
+      padding: 12px 10px;
+      width: 100%;
+      position: relative;
+    }
+
+    .tab.tab-bor .nav-tabs li a i {
+      text-align: right;
+      vertical-align: middle;
+      width: auto;
+      margin-right: 10px;
+    }
+
+    .tab.tab-bor .nav-tabs li a span {
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .tab.tab-bor .nav-tabs li a:before,
+    .tab.tab-bor .nav-tabs li a:after {
+      content: normal;
+      margin: 0;
+    }
+
+    .tab.tab-bor .nav-tabs li a:before {
+      content: "";
+      width: 0;
+      height: 4px;
+      background: #ffd200;
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      -webkit-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+    }
+
+    .tab.tab-bor .nav-tabs li.active a:before {
+      width: 100%;
+      left: 0;
+    }
+
+    .tab.tab-bor .nav-tabs li.active a,
+    .tab.tab-bor .nav-tabs li a:hover {
+      color: #ffd200;
+    }
+
+    .tab.tab-bor .tab-content {
+      width: 100%;
+      margin-top: 0;
+      padding: 30px;
+    }
+
+    /* Dark BG */
+    .text-white .tab.tab-bor .nav-tabs li {
+      background: none;
+    }
+
+    .text-white .tab.tab-bor .nav-tabs li a {
+      color: #ffffff;
+    }
+
+    .text-white .tab.tab-bor .nav-tabs li.active a {
+      color: #ffd200;
+    }
+
+    /*------------------------------------- 
+       TAB - Vertical 
+    -------------------------------------*/
+    .tab.tab-vertical {
+      border: 1px solid #e7e7e7;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .tab.tab-vertical .nav-tabs {
+      margin-right: 0;
+      width: 30%;
+      border-bottom: 1px solid #e7e7e7;
+      position: relative;
+      z-index: 9;
+    }
+
+    .tab.tab-vertical .nav-tabs:before {
+      background: #f9f9f9;
+      border-right: 1px solid #e7e7e7;
+      display: block;
+      content: "";
+      height: 99.8%;
+      position: absolute;
+      left: 0;
+      bottom: -100%;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .tab.tab-vertical .nav-tabs li {
+      text-align: left;
+    }
+
+    .tab.tab-vertical .nav-tabs li a {
+      background: #f9f9f9;
+      font-weight: 400;
+      display: inline-block;
+      width: 100%;
+      border: 1px solid #e7e7e7;
+      border-left: none;
+      border-bottom: none;
+      padding: 15px 20px 15px 40px;
+    }
+
+    .tab.tab-vertical .nav-tabs li:first-child a {
+      border-top: none;
+    }
+
+    .tab.tab-vertical .nav-tabs li a i {
+      float: left;
+      width: auto;
+      margin-right: 20px;
+    }
+
+    .tab.tab-vertical .nav-tabs li a span {
+      line-height: 46px;
+    }
+
+    .tab.tab-vertical .nav-tabs li a::before {
+      background: #ffd200;
+      content: "";
+      height: 100%;
+      left: -6px;
+      margin-top: 0;
+      position: absolute;
+      right: inherit;
+      top: 0;
+      width: 5px;
+      opacity: 0;
+    }
+
+    .tab.tab-vertical .nav-tabs li.active a::before,
+    .tab.tab-vertical .nav-tabs li a:hover:before {
+      left: -1px;
+      opacity: 1;
+      -webkit-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+    }
+
+    .tab.tab-vertical .nav-tabs li.active a,
+    .tab.tab-vertical .nav-tabs li a:hover,
+    .tab.tab-vertical .nav-tabs li.active a:hover>a:focus {
+      background: #fff;
+      color: #ffd200;
+      border-right: none;
+      border-bottom: none;
+      position: relative;
+    }
+
+    .tab.tab-vertical .nav-tabs li.active a {
+      border-top-color: #e7e7e7 !important;
+    }
+
+    .tab.tab-vertical .tab-content {
+      width: 70%;
+      padding: 50px;
+    }
+
+    /*------------------------------------- 
+       TAB - Light 
+    --------------------------------------*/
+    .tab.tab-light .nav-tabs {
+      width: 100%;
+      margin: 0px;
+      margin-bottom: -1px;
+      border-bottom: 1px solid #e6e6e6;
+      text-align: center;
+    }
+
+    .tab.tab-light .nav-tabs li {
+      margin-right: 0;
+      width: auto;
+      float: none;
+      margin: 0 1px;
+      border: 1px solid #e0e0e0;
+      background: none;
+      border-bottom: none;
+    }
+
+    .tab.tab-light .nav-tabs li:last-child {
+      margin-right: 0px;
+    }
+
+    .tab.tab-light .nav-tabs li.active {
+      border-bottom: none;
+      background: none;
+    }
+
+    .tab.tab-light .nav-tabs li a {
+      border: none;
+      display: block;
+      background: none;
+      color: #333;
+      position: relative;
+    }
+
+    .tab.tab-light .nav-tabs li a i {
+      display: none;
+    }
+
+    .tab.tab-light .nav-tabs li a span {
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .tab.tab-light .nav-tabs li.active a {
+      color: #000;
+    }
+
+    .tab.tab-light .nav-tabs li a:before {
+      content: "";
+      width: 0;
+      height: 3px;
+      margin: 0;
+      background: #1f59bb;
+      position: absolute;
+      left: 50%;
+      top: -1px;
+      -webkit-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+    }
+
+    .tab.tab-light .nav-tabs li.active a:before {
+      width: 100%;
+      left: 0;
+    }
+
+    .tab.tab-light .nav-tabs li.active a:after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      margin: 0;
+      background: #ffffff;
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+    }
+
+    .tab.tab-light .tab-content {
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    /* Dark BG */
+    .text-white .tab.tab-light .nav-tabs li {
+      background: none;
+    }
+
+    .text-white .tab.tab-light .nav-tabs li a {
+      color: #ffffff;
+    }
+
+    .text-white .tab.tab-light .nav-tabs li.active a {
+      color: #ffd200;
+    }
+
+    .text-white .tab.tab-light .nav-tabs li.active a:after {
+      background: #151515;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div style="width: 100%;height: 8vh;background-color: #fff;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div style="width: 100%;height: 8vh;background-color: ;display: flex;justify-content: flex-start;align-items: center;">
+            <a href="/backoffice">
+              <h4 class="m-t-0 m-b-0"><strong>E - OFFICE BAPPELBANGDA </strong></h4>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div style="width: 100%;height:8vh;background-color: ;display: flex;justify-content: flex-end;align-items: center;">
+            <div class="dropdown">
+              <button class="btn btn-dark btn-embossed btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Hi, <span style="text-transform:uppercase"><%= user.fullname%></span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                
+                <li><a href="/autentifikasi/logout">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <section style="padding: 60px 0;">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <h2 class="text-center m-t-0 m-b-0"><strong>SURAT KELUAR</strong></h2>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 30px;">
+        <div class="col-md-12 col-lg-12">
+          <div class="panel" style="padding:30px">
+            <div class="panel-content pagination2">
+              <table class="table table-bordered m-b-0" id="data">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>No. Surat</th>
+                    <th>Tanggal Surat</th>
+                    <th>Perihal</th>
+                    <th>Sifat</th>
+                    <th>Penanggung Jawab</th>
+                    <th>Option</th>
+                  </tr>
+                </thead>
+      
+                <tbody>
+                  <% for(var i=0; i<data.length; i++){ %>
+                    <tr>
+                      <td><%= i+1%></td>
+                      <td><%= data[i].no_surat%> <%= data[i].id%></td>
+                      <td><%= data[i].tgl_surat2%></td>
+                      <td><%= data[i].perihal%></td>
+                      <td><%= data[i].sifat_surat%></td>
+                      <td><%= data[i].fullname%></td>
+                      <td>
+                        <center>
+                          <ul class="list-inline" style="text-align: center;">
+                            <li><button class="btn btn-info btn-embossed btn-sm" onclick="detail(<%= data[i].id%>)"><i class="fa fa-info" aria-hidden="true"></i></button></li>
+                          </ul>
+                        </center>
+                      </td>
+                    </tr>
+                  <%}%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal fade modal-detail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Detail Surat Masuk</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-lg-6 table-no-border">
+              <div style="overflow: hidden;">
+                <table class="table table-bordered table-striped">
+                  <tbody>
+                    <tr>
+                      <td style="width: 140px;">No. Surat</td>
+                      <td style="width: 5px;">:</td>
+                      <td id="noSurat">-</td>
+                    </tr>
+    
+                    <tr>
+                      <td>Klasifikasi Surat</td>
+                      <td>:</td>
+                      <td id="klasifikasi">-</td>
+                    </tr>
+    
+                    <tr>
+                      <td>Tanggal Surat Keluar</td>
+                      <td>:</td>
+                      <td id="tglSurat">-</td>
+                    </tr>
+    
+                    <tr>
+                      <td>Perihal</td>
+                      <td>:</td>
+                      <td id="perihal">-</td>
+                    </tr>
+    
+                    <tr>
+                      <td>Tujuan</td>
+                      <td>:</td>
+                      <td id="tujuan">-</td>
+                    </tr>
+    
+                    <tr>
+                      <td>Sifat Surat</td>
+                      <td>:</td>
+                      <td id="sifatSurat">-</td>
+                    </tr>
+    
+                    <tr>
+                      <td>Tanggal Pelaksanaan</td>
+                      <td>:</td>
+                      <td><span id="tglAwal"></span> s/d <span id="tglAkhir"></span></td>
+                    </tr>
+    
+                    <tr>
+                      <td>Waktu</td>
+                      <td>:</td>
+                      <td><span id="waktuMulai"></span> s/d <span id="waktuSelesai"></span></td>
+                    </tr>
+    
+                    <tr>
+                      <td>Tempat</td>
+                      <td>:</td>
+                      <td id="tempat">-</td>
+                    </tr>
+    
+                    <tr>
+                      <td>Penanggung Jawab</td>
+                      <td>:</td>
+                      <td id="penanggungJawab">-</td>
+                    </tr>
+    
+                    <tr>
+                      <td>Pelaksana</td>
+                      <td>:</td>
+                      <td id="pelaksana">-</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+            </div>
+            <div class="col-md-6 col-lg-6">
+              <div style="width: 100%;" id="fileSurat">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  
+    <script src="/plugins/gsap/main-gsap.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/jquery-cookies/jquery.cookies.min.js"></script> <!-- Jquery Cookies, for theme -->
+    <script src="/plugins/jquery-block-ui/jquery.blockUI.min.js"></script> <!-- simulate synchronous behavior when using AJAX -->
+    <script src="/plugins/translate/jqueryTranslator.min.js"></script> <!-- Translate Plugin with JSON data -->
+    <!--<script src="/javascripts/peta/wicket.js" type="text/javascript"></script>
+    <script src="/javascripts/peta/wicket-gmap3.js" type="text/javascript"></script>-->
+    <!--<script src="/plugins/bootbox/bootbox.min.js"></script>--> <!-- Modal with Validation -->
+    <script src="/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script> <!-- Custom Scrollbar sidebar -->
+    <script src="/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script> <!-- Show Dropdown on Mouseover -->
+    <!--<script src="/plugins/charts-sparkline/sparkline.min.js"></script>--> <!-- Charts Sparkline -->
+    <!--<script src="/plugins/retina/retina.min.js"></script>--> <!-- Retina Display -->
+    <script src="/plugins/select2/select2.min.js"></script> <!-- Select Inputs -->
+    <script src="/plugins/icheck/icheck.min.js"></script> <!-- Checkbox & Radio Inputs -->
+    <!--<script src="/plugins/backstretch/backstretch.min.js"></script>--> <!-- Background Image -->
+    <!--<script src="/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>--> <!-- Animated Progress Bar -->
+    <!--<script src="/plugins/charts-chartjs/Chart.min.js"></script>-->
+    <!--<script src="/javascripts/backoffice/builder.js"></script>--> <!-- Theme Builder -->
+    <!--<script src="/javascripts/backoffice/sidebar_hover.js"></script>--> <!-- Hide and show sidebar on hover (Optional) -->
+    <!--<script src="/javascripts/backoffice/widgets/notes.js"></script>--> <!-- Notes Widget -->
+    <!--<script src="/javascripts/backoffice/quickview.js"></script>--> <!-- Chat Script -->
+    <!--<script src="/javascripts/backoffice/pages/search.js"></script>--> <!-- Search Script -->
+    <script src="/javascripts/backoffice/plugins.js"></script> <!-- Main Plugin Initialization Script -->
+    <script src="/javascripts/backoffice/application.js"></script> <!-- Main Application Script -->
+    <!-- End core JS Backoffice -->
+
+    <!-- Custom JS Backoffice -->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/ckeditor_4/ckeditor.js"></script>
+    <script src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/plugins/bootstrap-timepicker/bootstrap-datetimepicker.js"></script>
+
+    <script src="/javascripts/backoffice/pages/form_wizard.js"></script>
+    <script src="/plugins/step-form-wizard/js/step-form-wizard.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#data').DataTable({
+          "language": {
+              "sProcessing":   "Sedang memproses...",
+              "sLengthMenu":   "_MENU_",
+              "sZeroRecords":  "Tidak ditemukan data yang sesuai",
+              "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+              "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",
+              "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+              "sInfoPostFix":  "",
+              "sUrl":          "",
+              "oPaginate": {
+                "sFirst":    "Pertama",
+                "sPrevious": "Sebelumnya",
+                "sNext":     "Selanjutnya",
+                "sLast":     "Terakhir"
+              }
+          },
+          "columnDefs": [
+              { "width": "70px", "targets": 6}
+          ],
+        });
+
+        
+      });
+
+      function detail(id) {
+    $.ajax({
+      type: "GET",
+      async: false,
+      global: false,
+      url: "/manajemen_esurat/get_surat_keluar/" + id,
+      dataType: 'json',
+      success: function (data) {
+        $("#idSurat").val(data.data[0].id);
+        $("#noSurat").html(data.data[0].no_surat);
+        $("#klasifikasi").html(data.data[0].klasifikasi_surat);
+        $("#tglSurat").html(data.data[0].tgl_surat2);
+        $("#perihal").html(data.data[0].perihal);
+        $("#tujuan").html(data.data[0].tujuan);
+        $("#sifatSurat").html(data.data[0].sifat_surat);
+        $("#tglAwal").html(data.data[0].tgl_mulai2);
+        $("#tglAkhir").html(data.data[0].tgl_akhir2);
+        $("#waktuMulai").html(data.data[0].waktu_mulai);
+        $("#waktuSelesai").html(data.data[0].waktu_akhir);
+        $("#tempat").html(data.data[0].tempat);
+        $("#penanggungJawab").html(data.data[0].fullname);
+        $("#pelaksana").html(data.data[0].pelaksana);
+        $("#fileSurat").html('<center><a href="/foto/' + data.data[0].file_surat + '" data-fancybox="' + data.data[0].id + '" title="' + data.data[0].perihal + '"><img src="/foto/' + data.data[0].file_surat + '" style="width:100%;height:460px"></center>');
+        $("#idne").val(id);                               
+        $(".modal-detail").modal("toggle");
+      }
+    })
+   
+   
+  }
+    </script>
+</body>
+</html>
+ 

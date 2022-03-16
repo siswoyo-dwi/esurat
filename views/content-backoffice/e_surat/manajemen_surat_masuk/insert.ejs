@@ -1,0 +1,206 @@
+<% include ../../../template-backoffice/e_surat/header.ejs %>
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Tambah Data Surat Masuk</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_esurat/surat_masuk">Data</a></li>
+        <li class="active">Tambah Data</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <form role="form" action="/manajemen_esurat/surat_masuk/submit_insert" method="POST" enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label>No. Agenda</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="no_agenda" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>No. Surat Masuk</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="no_surat" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Tanggal Surat Masuk</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="tgl_surat" id="tgl1">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Pengirim</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="pengirim" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Jenis Surat</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="id_jenis_surat" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <% for(var i=0; i<jenis_surat.length; i++){%>
+                          <option value="<%= jenis_surat[i].id%>"><%= jenis_surat[i].jenis_surat%></option>
+                          <%}%>
+                      </select>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Perihal</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="perihal" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Tanggal Pelaksanaan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Awal</label>
+                      <input type="text" class="form-control" name="tgl_mulai" id="tgl2">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Akhir</label>
+
+                      <input type="text" class="form-control" name="tgl_akhir" id="tgl3">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Waktu</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Awal</label>
+
+                      <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" name="waktu_mulai"/>
+                        <span class="input-group-addon" style="cursor: pointer;">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Akhir</label>
+
+                      <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control" name="waktu_akhir" />
+                        <span class="input-group-addon" style="cursor: pointer;">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Tempat</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="tempat" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Sifat Surat</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="sifat_surat" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <option value="Biasa">Biasa</option>
+                        <option value="Mendesak">Mendesak</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Catatan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <textarea name="catatan" class="form-control" id="" rows="10"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Upload File Surat Masuk</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="file" class="form-control" name="file_surat" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Publish ?</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="publish" id="" class="form-control">
+                        <option value="0">Ya</option>
+                        <option value="1">Tidak</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021 </span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/e_surat/footer.ejs %>
+<script type="text/javascript">
+$('#datetimepicker1').datetimepicker({
+    format: 'HH:mm',
+});
+
+$('#datetimepicker2').datetimepicker({
+  format: 'HH:mm',
+});
+</script>

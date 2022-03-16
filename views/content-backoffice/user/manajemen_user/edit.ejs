@@ -1,0 +1,244 @@
+<% include ../../../template-backoffice/user/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Edit Data User </strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/user">Data User</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-header header-line">
+          <!-- Notifikasi -->
+        </div>
+        <div class="panel-content">
+          <div class="row">
+            <div class="col-md-12">
+
+              <!-- Start form -->
+              <form role="form" action="/user/submit_edit" method="POST" enctype="multipart/form-data">
+                <input type="hidden" class="form-control" id="" name="id_user" value="<%= data[0]['id_user'] %>">
+                <div class="form-group">
+                  <label>Username</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="" name="username" value="<%= data[0]['username'] %>" placeholder="Nama">
+                    </div>
+                  </div>
+                </div>
+
+             
+
+                <div class="form-group">
+                  <label>Nama Lengkap</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="" name="fullname"  value="<%= data[0]['fullname'] %>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>NIP</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="" name="NIP" value="<%= data[0].NIP%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Jabatan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="id_jabatan" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <% for(var i=0; i<jabatan.length; i++){%>
+                          <option value="<%= jabatan[i].id%>" <%if(jabatan[i].id==data[0].id_jabatan){%>selected<%}%>><%= jabatan[i].jabatan%></option>
+                          <%}%>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Pangkat/Golongan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="id_golongan" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <% for(var i=0; i<golongan.length; i++){%>
+                          <option value="<%= golongan[i].id%>" <%if(golongan[i].id==data[0].id_golongan){%>selected<%}%>><%= golongan[i].golongan%></option>
+                          <%}%>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="form-group">
+                  <label>Unit Kerja</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="id_unit_kerja" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <% for(var i=0; i<unit_kerja.length; i++){%>
+                          <option value="<%= unit_kerja[i].id%>" <%if(unit_kerja[i].id==data[0].id_bidang){%>selected<%}%>><%= unit_kerja[i].unit_kerja%></option>
+                          <%}%>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Pendidikan Terakhir</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="pendidikan_terakhir" id="" value="<%= data[0].pendidikan_terakhir%>">
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="form-group">
+                  <label>Tempat, Tanggal Lahir</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <input type="text" class="form-control" name="tempat_lahir" id="" value="<%= data[0].tempat_lahir%>">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <input type="text" class="form-control" name="tgl_lahir" id="tgl1" value="<%= data[0].tgl_lahir2%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Jenis Kelamin</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="jns_kelamin" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <option value="Laki-laki" <%if(data[0].jns_kelamin=="Laki-laki"){%>selected<%}%>>Laki-laki</option>
+                        <option value="Perempuan" <%if(data[0].jns_kelamin=="Perempuan"){%>selected<%}%>>Perempuan</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Golongan Darah</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="golongan_darah" id="" value="<%= data[0].golongan_darah%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Alamat</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="alamat" id="" value="<%= data[0].alamat%>">
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="form-group">
+                  <label>No. Telepon</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="telp" id="" value="<%= data[0].telp%>">
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="form-group">
+                  <label>Email</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="email" id="" value="<%= data[0].email%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Agama</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="agama" id="" value="<%= data[0].agama%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>No. NPWP</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="no_npwp" id="" value="<%= data[0].no_npwp%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>TMT Gaji Berkala</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="tmt_gaji_berkala" id="tgl2" value="<%= data[0].tmt_gaji_berkala%>">
+                    </div>
+                  </div>
+                </div>
+                <%if(user.role==0){%>
+                <div class="form-group">
+                  <label>Otoritas ?</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="role" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <option value="0" <%if(data[0].role=="0"){%>selected<%}%>>Superadmin</option>
+                        <option value="1" <%if(data[0].role=="1"){%>selected<%}%>>Resepsionis</option>
+                        <option value="2" <%if(data[0].role=="2"){%>selected<%}%>>Ka Badan</option>
+                        <option value="3" <%if(data[0].role=="3"){%>selected<%}%>>Sekretaris</option>
+                        <option value="4" <%if(data[0].role=="4"){%>selected<%}%>>Kasubbag</option>
+                        <option value="5" <%if(data[0].role=="5"){%>selected<%}%>>Pelaksana/Staff</option>
+                        <option value="6" <%if(data[0].role=="6"){%>selected<%}%>>Kabid</option>
+                        <option value="7" <%if(data[0].role=="7"){%>selected<%}%>>Sub Koordinator</option>
+                        <option value="8" <%if(data[0].role=="8"){%>selected<%}%>>Staff</option>
+                        <option value="9" <%if(data[0].role=="9"){%>selected<%}%>>Kelompok Jabatan Fungsional</option>
+
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <%}else {%>
+                  <input type="hidden" class="form-control" name="role" id="" value="<%= data[0].role%>">
+                  <%}%>
+                
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+              </form>
+              <!-- End start form -->
+
+            </div>
+          </div>         
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021</span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/user/footer.ejs %>

@@ -1,0 +1,247 @@
+<% include ../../../template-backoffice/user/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Tambah Data User</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/user">Data User</a></li>
+        <li class="active">Tambah Data</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-header header-line">
+          <!-- Notifikasi -->
+        </div>
+        <div class="panel-content">
+          <div class="row">
+            <div class="col-md-12">
+
+              <!-- Start form -->
+              <form role="form" action="/user/submit_insert" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label>Username</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="" name="username" >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Password</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="password" class="form-control" id="" name="pwd" >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Nama Lengkap</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="" name="fullname" >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>NIP</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="" name="NIP" >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Jabatan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="id_jabatan" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <% for(var i=0; i<jabatan.length; i++){%>
+                          <option value="<%= jabatan[i].id%>"><%= jabatan[i].jabatan%></option>
+                          <%}%>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Pangkat/Golongan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="id_golongan" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <% for(var i=0; i<golongan.length; i++){%>
+                          <option value="<%= golongan[i].id%>"><%= golongan[i].golongan%></option>
+                          <%}%>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Unit Kerja</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="id_unit_kerja" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <% for(var i=0; i<unit_kerja.length; i++){%>
+                          <option value="<%= unit_kerja[i].id%>"><%= unit_kerja[i].unit_kerja%></option>
+                          <%}%>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Pendidikan Terakhir</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="pendidikan_terakhir" id="">
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label>Tempat, Tanggal Lahir</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"> 
+                      <input type="text" class="form-control" name="tempat_lahir" id="" placeholder="Tempat Lahir">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <input type="text" class="form-control" name="tgl_lahir" id="tgl1" placeholder="Tanggal Lahir">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Jenis Kelamin</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="jns_kelamin" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Golongan Darah</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="golongan_darah" id="">
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div class="form-group">
+                  <label>Alamat</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="alamat" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>No. Telepon</label>
+                  <div class="row">
+                    <div class="col-md-6"><input type="text" class="form-control" id="" name="telp" ></div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Email</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="" name="email" >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Agama</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="" name="agama" >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>No. NPWP</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="" name="no_npwp" >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>TMT Gaji Berkala</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" id="tgl2" name="tmt_gaji_berkala" >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Otoritas ?</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="role" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <option value="0">Superadmin</option>
+                        <option value="1">Resepsionis</option>
+                        <option value="2">Ka Badan</option>
+                        <option value="3">Sekretaris</option>
+                        <option value="4">Kasubbag</option>
+                        <option value="5">Pelaksana/Staff</option>
+                        <option value="6">Kabid</option>
+                        <option value="7">Sub Koordinator</option>
+                        <option value="8">Staff</option>
+                        <option value="9">Kelompok Jabatan Fungsional</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                
+
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+              </form>
+              <!-- End form -->
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021</span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/user/footer.ejs %>

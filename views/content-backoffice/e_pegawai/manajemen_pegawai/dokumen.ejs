@@ -1,0 +1,207 @@
+<% include ../../../template-backoffice/e_pegawai/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Edit Data Pegawai</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_epegawai/pegawai">Data</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+
+      <div class="panel">
+        <div class="panel-content">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Dokumen</th>
+                <th>Upload File</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SK (SK CPNS dan SK PNS dan Lainnya)</td>
+                <td>
+                  <%if(dokumen[0].sk_pns==null || dokumen[0].sk_pns=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].sk_pns%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                  
+                </td>
+                
+              </tr>
+
+              <tr>
+                <td>SPMT</td>
+                <td>
+                  <%if(dokumen[0].spmt==null || dokumen[0].spmt=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].spmt%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>SKP</td>
+                <td>
+                  <%if(dokumen[0].skp==null || dokumen[0].skp=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].skp%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>KTP</td>
+                <td>
+                  <%if(dokumen[0].ktp==null || dokumen[0].ktp=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].ktp%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>KK</td>
+                <td>
+                  <%if(dokumen[0].kk==null || dokumen[0].kk=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].kk%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Akta</td>
+                <td>
+                  <%if(dokumen[0].akta==null || dokumen[0].akta=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].akta%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Ijazah</td>
+                <td>
+                  <%if(dokumen[0].ijazah==null || dokumen[0].ijazah=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].ijazah%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>KGB (Kenaikan Gaji Berkala)</td>
+                <td>
+                  <%if(dokumen[0].kgb==null || dokumen[0].kgb=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].kgb%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Karis/Karsu</td>
+                <td>
+                  <%if(dokumen[0].karis_karsu==null || dokumen[0].karis_karsu=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].karis_karsu%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Taspen</td>
+                <td>
+                  <%if(dokumen[0].taspen==null || dokumen[0].taspen=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].taspen%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Karpeg</td>
+                <td>
+                  <%if(dokumen[0].karpeg==null || dokumen[0].karpeg=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].karpeg%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Akses</td>
+                <td>
+                  <%if(dokumen[0].akses==null || dokumen[0].akses=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].akses%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Sertfikat</td>
+                <td>
+                  <%if(dokumen[0].sertifikat==null || dokumen[0].sertifikat=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].sertifikat%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+              <tr>
+                <td>STTP (Latsar/Prajab)</td>
+                <td>
+                  <%if(dokumen[0].sttp==null || dokumen[0].sttp=='' ){%>
+                    Dokumen Belum diupload
+                  <%}else{%>
+                    <a href="/foto/<%= dokumen[0].sttp%>" target="_blank" class="btn btn-primary btn-embossed">Lihat File</a>
+                  <%}%>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021</span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/e_pegawai/footer.ejs %>
+<script type="text/javascript">
+
+</script>

@@ -1,0 +1,384 @@
+<% include ../../template-backoffice/e_sppd/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Data Laporan</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a>
+        </li>
+        <li class="active">Data</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-header header-line">
+           <!-- <a class="btn btn-primary btn-embossed" href="/manajemen_esurat/master_jenis_surat/insert" role="button"><i class="fa fa-plus" aria-hidden="true"></i>Tambah Data</a> -->
+        </div>
+        <div class="panel-content pagination2">
+          <table class="table table-bordered table-striped table-hover" id="data">
+            <thead>
+              <tr>
+                <th class="header" >No.</th>
+                <th class="header" >No. Surat</th>
+                <th class="header" >Status</th>
+                <th class="header" >Pengirim</th>
+                <th class="header" >Perihal</th>
+                <th class="header" >Tanggal Pelaksanaan</th>
+                <th class="header" >Option</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% for(var i=0; i<data.length; i++){ %>
+              <tr>
+                <td><%= i+1%></td>
+                <td><%= data[i].no_surat%></td>
+                <% if(data[i].status_surat==0){%>
+                  <td>Baru</td>
+                  <% }else if(data[i].status_surat>0&&data[i].status_surat<4){%>
+                    <td>Terkirim</td>
+                   
+                      <%}else if(data[i].status_surat==4){%>
+                        <td>Diterima</td>
+                        <%}else{%>
+                         <td>Belum Dilaporkan</td> 
+                          <%}%>
+
+                <td><%= data[i].pengirim%></td>
+                <td><%= data[i].perihal%></td>
+                <td><%= data[i].start%> s/d <%= data[i].end%> </td>
+                <td>
+                  <center>
+                    <ul class="list-inline" style="text-align: center;">
+                      <%if(data[i].status_surat==0){%>
+                      <li><a class="btn btn-warning btn-embossed btn-sm" href="/manajemen_esppd/edit/<%= data[i].id%>"
+                          role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+                          <%}%>
+                          <%if(data[i].status_surat==4){%>
+                            <li><button class="btn btn-warning btn-embossed btn-sm"
+                              role="button" onclick="detail(<%= data[i].id%>)">detail</button></li>
+                          <%}%>
+                          <li><button class="btn btn-success btn-embossed btn-sm"
+                            role="button"  data-toggle="modal" data-target=".modal-riwayat" onclick="histori(<%= data[i].id%>)"><i class="fa fa-info" aria-hidden="true"></i></button></li>
+                    </ul>
+                  </center>
+                </td>
+              </tr>
+              <%}%>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021 </span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<div class="modal fade modal-detail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detail Surat Masuk</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab tab-light clearfix">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#tab2-1" data-toggle="tab" aria-expanded="false">DETAIL SURAT</a></li>
+            <li><a href="#tab2-2" data-toggle="tab" aria-expanded="false">DETAIL LAPORAN</a></li>
+            <li><a href="#tab2-3" data-toggle="tab" aria-expanded="false">PERSETUJUAN LAPORAN</a></li>
+
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content" style="margin-top:0px;padding-left: 10px;padding-right: 10px;">
+            <div role="tabpanel" class="tab-pane fade active in" id="tab2-1">
+        <div class="row">
+          <div class="col-md-6 col-lg-6 table-no-border">
+            <div style="overflow: hidden;">
+              <table class="table table-bordered table-striped">
+                <tbody>
+                  <tr>
+                    <td style="width: 140px;">No. Agenda</td>
+                    <td style="width: 5px;">:</td>
+                    <td id="noAgenda1" value=""></td>
+                  </tr>
+  
+                  <tr>
+                    <td>No. Surat Masuk</td>
+                    <td>:</td>
+                    <td id="noSurat1"></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tanggal Surat Masuk</td>
+                    <td>:</td>
+                    <td id="tglSurat1"></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Pengirim</td>
+                    <td>:</td>
+                    <td id="pengirim1"></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Jenis Surat</td>
+                    <td>:</td>
+                    <td id="jenisSurat1"></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Perihal</td>
+                    <td>:</td>
+                    <td id="perihal1"></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tanggal Pelaksanaan</td>
+                    <td>:</td>
+                    <td><span id="tglMulai1"></span> s/d <span id="tglAkhir1"></span></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Waktu</td>
+                    <td>:</td>
+                    <td><span id="waktuMulai1"></span> s/d <span id="waktuAkhir1"></span></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tempat</td>
+                    <td>:</td>
+                    <td id="tempat1"></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Sifat Surat</td>
+                    <td>:</td>
+                    <td id="sifatSurat1"></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Catatan</td>
+                    <td>:</td>
+                    <td id="catatan1"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <div style="width: 100%;" id="fileGambar1">
+            </div>
+          </div>
+        </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab2-2">
+              <div class="row">
+                <div class="col-md-12 col-lg-12">
+                  <p>Deskripsi Laporan</p>
+                  <div id="deskripsi-modal"></div>
+                  <hr>
+                  <div id="lihatFile"></div>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab2-3">
+              <div class="row">
+                <div class="col-md-12 col-lg-12">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-6">
+                      </div>
+                    </div>
+                  </div>
+                  <input type="text" hidden id="id_surat_masuk">
+                  <div class="form-group">
+                    <label for="">Keterangan / Tindak lanjut</label>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <textarea name="keterangan" id="keterangan" rows="10" class="form-control"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                    
+                  <div class="form-group">
+                    <!-- <button onclick="tindakLanjut()" class="btn btn-primary btn-embossed">Simpan</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<div class="modal fade modal-riwayat" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Riwayat Laporan</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div style="width: 100%;">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                <th class="header" >No.</th>
+                <th class="header" >Pengirim</th>       
+                <th class="header" >Penerima</th>       
+                <th class="header" >keterangan</th>          
+   
+                  </tr>
+                  
+                </thead>
+      
+                <tbody id="tabel">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<% include ../../template-backoffice/e_sppd/footer.ejs %>
+
+<script type="text/javascript">
+  function histori(id) {
+    $('#tabel').empty();
+
+    $.getJSON('/manajemen_esppd/history_laporan/'+id, function(data){
+      let  result = data.filter(function(item) {
+            return item.role !== 3;
+          })
+
+        for (let i = 1; i < result.length; i++) {
+            if (result[i].keterangan&&result[i].keterangan!=='null') {
+            $('#tabel').append(` <tr>
+                        <td>${i+1}</td>
+                        <td>${result[i-1].nama_mengetahui}</td>
+                        <td>${result[i].nama_mengetahui}</td>
+                        <td>${result[i].keterangan}</td>
+                       `)
+          }else{
+            $('#tabel').append(` <tr>
+                        <td>${i+1}</td>
+                        <td>${result[i-1].nama_mengetahui}</td>
+                        <td>${result[i].nama_mengetahui}</td>
+                        <td>Mengetahui</td>
+                       `)
+            }
+   
+          
+        }
+
+    })
+
+  }
+  function detail(id) {
+    $.ajax({
+      type: "GET",
+      async: false,
+      global: false,
+      url: "/manajemen_esppd/getDetailSurat/" + id,
+      dataType: 'json',
+      success: function (data) {
+        console.log(id,data);
+        $("#noAgenda1").html(data.rows[0].no_agenda );
+      $("#noSurat1").html(data.rows[0].no_surat);
+      $("#tglSurat1").html(data.rows[0].tanggal);
+      $("#jenisSurat1").html(data.rows[0].jenis_surat);
+      $("#perihal1").html(data.rows[0].perihal);
+      $("#tglMulai1").html(data.rows[0].start);
+      $("#tglAkhir1").html(data.rows[0].end);
+      $("#keterangan").html(data.rows[0].keterangan);
+      $("#waktuMulai1").html(data.rows[0].waktu_mulai);
+      $("#waktuAkhir1").html(data.rows[0].waktu_akhir);
+      $("#tempat1").html(data.rows[0].tempat );
+      $("#sifatSurat1").html(data.rows[0].sifat_surat );
+      $("#catatan1").html(data.rows[0].catatan );
+      $("#pengirim1").html(data.rows[0].pengirim );
+      $("#id_surat_masuk1").val(data.rows[0].id_surat_masuk);
+      $("#deskripsi-modal").html(data.rows[0].deskripsi );
+      $("#fileGambar1").html(`<center><img src="/foto/${data.rows[0].file}"style="width:100%;height:460px"></center>`)
+      $("#lihatFile").html(`<a href="/foto/${data.rows[0].fileLaporan}" target="_blank" class="btn btn-primary btn-embossed">Lihat Dokumen Laporan</a>`)
+        $(".modal-detail").modal("toggle");
+      }
+    })
+   
+   
+  }
+function loadTabel(id){
+  $('#tabelDisposisi').empty();
+  $.getJSON('/manajemen_esurat/json_disposisi/'+id, function(data){
+      console.log(data);
+    
+      data.data.forEach((itm, idx)=>{
+        $('#tabelDisposisi').append(` <tr>
+                        <td>${idx+1}</td>
+                        <td>${itm.waktu}</td>
+                        <td>${itm.disposisi}</td>
+                        <td>${itm.dari}</td>
+                        <td>${itm.ket}</td>
+                        <td>
+                          <center><button class="btn btn-danger btn-sm btn-embossed"><i
+                            class="fa fa-trash-o" aria-hidden="true" onClick="busek(${itm.id})"></i></button></center>
+                          
+                        </td>
+                      </tr>`)
+      })
+    })
+}
+  $(document).ready(function() {
+    $('#data').DataTable({
+      "language": {
+          "sProcessing":   "Sedang memproses...",
+          "sLengthMenu":   "_MENU_",
+          "sZeroRecords":  "Tidak ditemukan data yang sesuai",
+          "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+          "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",
+          "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+          "sInfoPostFix":  "",
+          "sUrl":          "",
+          "oPaginate": {
+            "sFirst":    "Pertama",
+            "sPrevious": "Sebelumnya",
+            "sNext":     "Selanjutnya",
+            "sLast":     "Terakhir"
+          }
+      },
+      "columnDefs": [
+          { "width": "100px", "targets": 6}
+      ],
+    });
+  });
+</script>

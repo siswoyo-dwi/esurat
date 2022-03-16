@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="" name="description" />
+        <meta content="themes-lab" name="author" />
+        <link rel="shortcut icon" href="/images/backoffice/shortcut_icon.ico">
+        <title>E-Office Bappelbangda Kabupaten Sukoharjo</title>
+        <link href="/stylesheets/backoffice/style.css" rel="stylesheet">
+        <link href="/stylesheets/backoffice/ui.css" rel="stylesheet">
+        
+        <style type="text/css">
+        h2{
+            font-weight: bold;
+        }
+        </style>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 " style="padding-left: 0;padding-right: 0;">
+                    <div
+                        style="width: 100%;height:100vh;background-color: whitesmoke;display: flex;justify-content: center;align-items: center;">
+                        <div style="width: 100%;background-color: ;padding: 30px 60px;">
+                            <h1 class="text-center title" style="font-size: 48px;margin: 0;padding:0;letter-spacing: 1.5px;"><strong>E - OFFICE</strong></h1>
+                            <h3 class="text-center title" style="margin:15px 0 0 0;padding:0;"><strong>BAPPELBANGDA</strong></h3>
+
+                            <h3 class="text-center title" style="margin:0;padding:0;"><strong>KABUPATEN SUKOHARJO</strong></h3>
+                            <hr>
+                            <form role="form" action="/autentifikasi/login" method="post"> 
+                                <input type="hidden" name="tujuan" value="<%=tujuan%>"/>
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" id="" name="username" style="background-color: #fff;" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" id="" name="password" style="background-color: #fff;" placeholder="Password">
+                                </div>
+                                <button class="btn btn-primary btn-embossed btn-block">Log in</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-lg-8">
+                    <img src="/images/template/gedung-terpadu.jpg" alt="" style="width: 100%;height: 100vh;">
+                </div>
+            </div>
+        </div>
+
+        <script src="/plugins/jquery/jquery-1.11.1.min.js"></script>
+        <script src="/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/plugins/gsap/main-gsap.min.js"></script>
+        <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <!-- <script src="/plugins/backstretch/backstretch.min.js"></script> -->
+        <!-- <script type="text/javascript">
+            $.backstretch(["/images/backoffice/gallery/bg4.jpg", "/images/backoffice/gallery/bg3.jpg", "/images/backoffice/gallery/bg2.jpg", "/images/backoffice/gallery/bg1.jpg"], {
+                fade: 600,
+                duration: 4000
+            });
+        </script> -->
+    </body>
+
+</html>

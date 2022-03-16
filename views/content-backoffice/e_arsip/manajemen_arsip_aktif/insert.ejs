@@ -1,0 +1,112 @@
+<% include ../../../template-backoffice/e_arsip/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Tambah Data Arsip Aktif</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_earsip/arsip_aktif">Data</a></li>
+        <li class="active">Tambah Data</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <form role="form" action="/manajemen_earsip/arsip_aktif/submit_insert" method="POST" enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label>Judul</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="judul" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Bidang</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                     
+
+                     <select name="bidang" id="" class="form-control">
+                      <option value="">-- Pilih --</option>
+                      <% for(var i=0; i<unit_kerja.length; i++){%>
+                        <option value="<%= unit_kerja[i].id%>"><%= unit_kerja[i].unit_kerja%></option>
+                        <%}%>
+                    </select>
+                    </div>
+                  </div>
+                </div>
+                
+                
+
+                <div class="form-group">
+                  <label>Deskripsi</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <textarea name="deskripsi" id="" class="form-control" rows="10"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Upload Dokumen</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="file" class="form-control" name="file" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Masa Berlaku</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="masa_berlaku" id="tgl1">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Status</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="status" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <option value="0">Aktif</option>
+                        <option value="1">Inaktif</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021 </span>
+        <span>Pemerintah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/e_arsip/footer.ejs %>
+<script type="text/javascript">
+
+</script>

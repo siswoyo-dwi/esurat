@@ -1,0 +1,210 @@
+<% include ../../../template-backoffice/e_surat/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Edit Data Surat Keluar</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_esurat/surat_keluar">Data</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <form role="form" action="/manajemen_esurat/surat_keluar/submit_edit" method="POST" enctype="multipart/form-data">
+            <input type="hidden" class="form-control" name="id" id="" value="<%= data[0].id%>">
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label>No. Surat</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="no_surat" id="" value="<%= data[0].no_surat%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Klasifikasi Surat Keluar</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="klasifikasi_surat" id="" value="<%= data[0].klasifikasi_surat%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Tanggal Surat Keluar</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="tgl_surat" id="tgl1" value="<%= data[0].tgl_surat2%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Perihal</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="perihal" id="" value="<%= data[0].perihal%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Tujuan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="tujuan" id="" value="<%= data[0].tujuan%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Sifat Surat</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="sifat_surat" id="" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <option value="Biasa" <%if(data[0].sifat_surat=="Biasa"){%>selected<%}%>>Biasa</option>
+                        <option value="Mendesak" <%if(data[0].sifat_surat=="Mendesak"){%>selected<%}%>>Mendesak</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Tanggal Pelaksanaan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Awal</label>
+
+                      <input type="text" class="form-control" name="tgl_mulai" id="tgl2" value="<%= data[0].tgl_mulai2%>">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Akhir</label>
+
+                      <input type="text" class="form-control" name="tgl_akhir" id="tgl3" value="<%= data[0].tgl_akhir2%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Waktu</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Awal</label>
+
+                      <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" name="waktu_mulai" value="<%= data[0].waktu_mulai%>"/>
+                        <span class="input-group-addon" style="cursor: pointer;">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Akhir</label>
+
+                      <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control" name="waktu_akhir" value="<%= data[0].waktu_akhir%>"/>
+                        <span class="input-group-addon" style="cursor: pointer;">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Tempat</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="tempat" id="" value="<%= data[0].tempat%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Penanggung Jawab</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="penanggung_jawab" id="" class="form-control" data-search="true">
+                        <option value="">-- Pilih --</option>
+
+                        <% for(var i=0; i<user.length; i++){%>
+                          <option value="<%= user[i].id_user%>" <%if(user[i].id_user==data[0].penanggung_jawab){%>selected<%}%>><%= user[i].fullname%></option>
+                          <%}%>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Pelaksana</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="pelaksana" id="" value="<%= data[0].pelaksana%>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Upload File Surat Keluar</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="file" class="form-control" name="file_surat" id="">
+                      <a href="/foto/<%= data[0].file_surat%>" target="_blank">Lihat File</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Publish ?</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="publish" id="" class="form-control">
+                        <option value="0" <%if(data[0].publish=="0"){%>selected<%}%>>Ya</option>
+                        <option value="1" <%if(data[0].publish=="1"){%>selected<%}%>>Tidak</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021 </span>
+        <span>Pemerintah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/e_surat/footer.ejs %>
+
+<script type="text/javascript">
+$('#datetimepicker1').datetimepicker({
+    format: 'HH:mm',
+});
+
+$('#datetimepicker2').datetimepicker({
+  format: 'HH:mm',
+});
+</script>

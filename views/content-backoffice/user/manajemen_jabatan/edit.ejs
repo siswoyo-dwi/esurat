@@ -1,0 +1,53 @@
+<% include ../../../template-backoffice/user/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Edit Data Master Jabatan</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/user/master_jabatan">Data</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <form role="form" action="/user/master_jabatan/submit_edit" method="POST">
+            <input type="hidden" class="form-control" name="id" id="" value="<%= data[0].id%>">
+
+            <div class="form-group">
+              <label>Jabatan</label>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                  <input type="text" class="form-control" name="jabatan" id="" value="<%= data[0].jabatan%>">
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021</span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/user/footer.ejs %>
+<script type="text/javascript">
+
+</script>

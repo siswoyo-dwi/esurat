@@ -1,0 +1,368 @@
+<% include ../template-backoffice/e_surat/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Dashboard E - Surat</strong></h2>
+    <!-- <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li class="active">Dashboard</li>
+      </ol>
+    </div> -->
+  </div>
+  <%if(user.role==0){%>
+  
+  <div class="row">
+    <div class="col-md-4 col-lg-4">
+      <a href="/manajemen_esurat/surat_masuk">
+      <div class="panel" style="border-radius: 8px;margin-bottom: 0px;background-color: #4584D1 ;">
+        <div class="panel-content" style="padding: 20px !important;">
+          <div class="row">
+            <div class="col-md-5 col-lg-5">
+              <img src="/images/template/surat-masuk.png" alt="" style="width: 100px;">
+            </div>
+            <div class="col-md-7 col-lg-7">
+              <h2 class="text-right" style="margin: 0;color: #fff;"><strong>SURAT MASUK</strong></h2>
+              <h2 class="text-right" style="margin: 10px 0 0 0;color: #fff;"><strong><%= surat_masuk[0].jml%></strong></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+
+    <div class="col-md-4 col-lg-4">
+      <a href="/manajemen_esurat/surat_keluar">
+        <div class="panel" style="border-radius: 8px;margin-bottom: 0px;background-color: #4584D1 ;">
+          <div class="panel-content" style="padding: 20px !important;">
+            <div class="row">
+              <div class="col-md-5 col-lg-5">
+                <img src="/images/template/surat-keluar.png" alt="" style="width: 100px;">
+              </div>
+              <div class="col-md-7 col-lg-7">
+                <h2 class="text-right" style="margin: 0;color: #fff;"><strong>SURAT KELUAR</strong></h2>
+                <h2 class="text-right" style="margin: 10px 0 0 0;color: #fff;"><strong><%= surat_keluar[0].jml%></strong></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-4 col-lg-4">
+      <div class="panel" style="border-radius: 8px;margin-bottom: 0px;background-color: #4584D1 ;">
+        <div class="panel-content" style="padding: 20px !important;">
+          <div class="row">
+            <div class="col-md-5 col-lg-5">
+              <img src="/images/template/users.png" alt="" style="width: 100px;">
+            </div>
+            <div class="col-md-7 col-lg-7">
+              <h2 class="text-right" style="margin: 0;color: #fff;"><strong>BELUM DISPOSISI</strong></h2>
+              <h2 class="text-right" style="margin: 10px 0 0 0;color: #fff;"><strong><%=jmlBlm[0].jml%></strong></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%}%>
+
+
+  <div class="row" style="margin-top: 15px;">
+    <div class="col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content" style="padding: 0;">
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+              <h4 class="text-center"><strong>AGENDA KEGIATAN</strong></h4>
+              <hr>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+        
+              <div style="width: 100%;height:800px;">
+              <center>
+                <div style="width: 95%;height: 400px;" id="calendar"></div>
+              </center>
+            </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021 </span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+<!-- modal calendar -->
+<div class="modal fade bs-example-modal-lg modaldetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><span id="disposisinya"></span> (SURAT MASUK)</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 col-lg-6 table-no-border">
+            <div style="width: 100%;">
+              <table class="table table-bordered">
+                <tbody>
+                 
+                  <tr>
+                    <td style="width: 200px;">No. Agenda</td>
+                    <td style="width: 10px;">:</td>
+                    <td id="noAgendanya"></td>
+                  </tr>
+
+                  <tr>
+                    <td>No. Surat Masuk</td>
+                    <td>:</td>
+                    <td id="noSuratMasuknnya"></td>
+                  </tr> 
+
+                  <tr>
+                    <td>Tanggal Surat Masuk</td>
+                    <td>:</td>
+                    <td id="tglSuratMasuknya"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Pengirim</td>
+                    <td>:</td>
+                    <td id="pengirimnya"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Jenis Surat</td>
+                    <td>:</td>
+                    <td id="jenisSuratnya"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Perihal</td>
+                    <td>:</td>
+                    <td id="perihalnya"></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tanggal Pelaksanaan</td>
+                    <td>:</td>
+                    <td><span id="tgl_mulainya"></span> s/d <span id="tgl_akhirnya"></span></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Waktu Pelaksanaan</td>
+                    <td>:</td>
+                    <td><span id="mulainya"></span> s/d <span id="selesainya"></span></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tempat</td>
+                    <td>:</td>
+                    <td id="tempatnya"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Sifat Surat</td>
+                    <td>:</td>
+                    <td id="sifatSuratnya"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Catatan</td>
+                    <td>:</td>
+                    <td id="catatannya"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+
+          <div class="col-md-6 col-lg-6 table-no-border">
+            <div style="width: 100%;" id="fileSurat">
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg modaldetailkeluar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><span>Perihalnya (SURAT KELUAR)</span></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 col-lg-6 table-no-border">
+            <div style="width: 100%;">
+              <table class="table table-bordered">
+                <tbody>
+                 
+                  <tr>
+                    <td style="width: 200px;">No. Surat</td>
+                    <td style="width: 10px;">:</td>
+                    <td id="noSuratkeluar"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Klasifikasi Surat Keluar</td>
+                    <td>:</td>
+                    <td id="klasifikasiKeluar"></td>
+                  </tr> 
+
+                  <tr>
+                    <td>Tanggal Surat Keluar</td>
+                    <td>:</td>
+                    <td id="tglSuratKeluar"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Perihal</td>
+                    <td>:</td>
+                    <td id="perihalSuratKeluar"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Tujuan</td>
+                    <td>:</td>
+                    <td id="tujuanSuratKeluar"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Sifat Surat</td>
+                    <td>:</td>
+                    <td id="sifatSuratKeluar"></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tanggal Pelaksanaan</td>
+                    <td>:</td>
+                    <td><span id="tglMulaiKeluar"></span> s/d <span id="tglSelesaiKeluar"></span></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Waktu Pelaksanaan</td>
+                    <td>:</td>
+                    <td><span id="waktuMulaiKeluar"></span> s/d <span id="waktuSelesaiKeluar"></span></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tempat</td>
+                    <td>:</td>
+                    <td id="tempatKeluar"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Penanggung Jawab</td>
+                    <td>:</td>
+                    <td id="penanggungJawabKeluar"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Pelaksana</td>
+                    <td>:</td>
+                    <td id="pelaksanaKeluar"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+
+          <div class="col-md-6 col-lg-6 table-no-border">
+            <img src="https://via.placeholder.com/300" alt="" style="width: 100%;">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../template-backoffice/e_surat/footer.ejs %>
+
+<script>
+  let evnt  = <%- JSON.stringify(event) %>;
+  $('#calendar').fullCalendar({
+    themeSystem: 'bootstrap3',
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,basicWeek,basicDay'
+    },
+    defaultDate: Date.now(),
+    navLinks: true, // can click day/week names to navigate views
+    editable: true,
+    eventLimit: true, // allow "more" link when too many events
+    events: evnt,
+    eventClick: function (event, jsEvent, view) {
+      console.log(event)
+      $('#disposisinya').html(event.title);
+      // $('#modalBody').html(event.description);
+      // $('#eventUrl').attr('href',event.url);
+      let url = ""
+      if(event.jenis=='masuk'){ 
+          url = "/manajemen_esurat/getsuratmasuk/"+event.id
+      } else{
+        url = "/manajemen_esurat/getsuratkeluar/"+event.id
+      }
+      $('#noAgendanya').html('');
+        $('#noSuratMasuknnya').html('');
+        $('#tglSuratMasuknya').html('');
+        $('#pengirimnya').html('');
+        $('#jenisSuratnya').html('');
+        $('#perihalnya').html('');
+        $('#tgl_pelaksanaannya').html('');
+        $('#tgl_mulainya').html('');
+        $('#tgl_akhirnya').html('');
+        $('#mulainya').html('');
+        $('#selesainya').html('');
+        $('#tempatnya').html('');
+        $('#sifatSuratnya').html('');
+        $('#catatannya').html('');
+      $.getJSON(url, function(d){
+        console.log(d)
+        $('#noAgendanya').html(d.data.no_agenda);
+        $('#noSuratMasuknnya').html(d.data.no_surat);
+        $('#tglSuratMasuknya').html(d.data.tgl_surat2);
+        $('#pengirimnya').html(d.data.pengirim);
+        $('#jenisSuratnya').html(d.data.jenis_surat);
+        $('#perihalnya').html(d.data.perihal);
+        $('#tgl_pelaksanaannya').html(event.start._i);
+        $('#tgl_mulainya').html(d.data.tgl_mulainya);
+        $('#tgl_akhirnya').html(d.data.tgl_akhirnya);
+        $('#mulainya').html(d.data.waktu_mulai);
+        $('#selesainya').html(d.data.waktu_akhir);
+        $('#tempatnya').html(d.data.tempat);
+        $('#sifatSuratnya').html(d.data.sifat_surat);
+        $('#catatannya').html(d.data.catatan);
+        $("#fileSurat").html('<center><img src="/foto/' + d.data.file_surat + '" style="width:100%;height:460px"></center>');
+
+      })
+      $('.modaldetail').modal('show');
+    }
+  });
+</script>

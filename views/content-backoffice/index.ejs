@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="" name="description" />
+        <meta content="themes-lab" name="author" />
+        <link rel="shortcut icon" href="/images/backoffice/shortcut_icon.ico">
+        <title>E - Office Bappelbangda Kabupaten Sukoharjo</title>
+        <link href="/stylesheets/backoffice/style.css" rel="stylesheet">
+        <link href="/stylesheets/backoffice/ui.css" rel="stylesheet">
+        
+        <style type="text/css">
+        html, body{
+          background-color: whitesmoke;
+        }
+        </style>
+    </head>
+
+    <body>
+        <div style="width: 100%;height: 8vh;background-color: #fff;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div style="width: 100%;height: 8vh;background-color: ;display: flex;justify-content: flex-start;align-items: center;">
+                  <h4 class="m-t-0 m-b-0"><strong>E - OFFICE BAPPELBANGDA </strong></h4>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div style="width: 100%;height:8vh;background-color: ;display: flex;justify-content: flex-end;align-items: center;">
+                  <div class="dropdown">
+                    <button class="btn btn-dark btn-embossed btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      Hi, <span style="text-transform:uppercase"><%= user.fullname%></span>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                      
+                      <li><a href="/autentifikasi/logout">Logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%if(user.role!=2){%>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+              <div style="width: 100%;height: 46vh;display: flex;justify-content: space-evenly;align-items: flex-end;padding-bottom: 15px;background-color: ;">
+                <a href="/manajemen_esurat/dashboard">
+                <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;position: relative;">
+                  <img src="/images/template/surat-masuk.png" alt="" style="border-radius: 100%;height: 120px;">
+                  <h4 style="margin-top: 15px;"><strong>E - SURAT</strong></h4>
+                  <div style="width:50px;height: 50px;background-color:#353940 ;position: absolute;right:15px;top:-25px;border-radius: 100%;display: flex;justify-content: center;align-items: center;" class="shadow-lg">
+                    <strong><h2 class="m-t-0 m-b-0" style="color: #fff;"><strong><%= jml_surat_masuk%></strong></h2></strong>
+                  </div>
+                </div>
+                </a>
+
+                <a href="/manajemen_eagenda/dashboard">
+                  <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;">
+                    <img src="/images/template/e-agenda.png" alt="" style="border-radius: 100%;height: 120px;">
+                    <h4 style="margin-top: 15px;"><strong>E - AGENDA</strong></h4>
+                  </div>
+                </a>
+                
+                <a href="/manajemen_esppd/dashboard">
+
+                <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;position: relative;">
+                  <img src="/images/template/e-sppd.png" alt="" style="border-radius: 100%;height: 120px;">
+                  <h4 style="margin-top: 15px;"><strong>E - LAPORAN</strong></h4>
+
+                  <div style="width:50px;height: 50px;background-color:#353940 ;position: absolute;right:15px;top:-25px;border-radius: 100%;display: flex;justify-content: center;align-items: center;" class="shadow-lg">
+                    <strong><h2 class="m-t-0 m-b-0" style="color: #fff;"><strong><%= jml_laporan_baru%></strong></h2></strong>
+                  </div>
+                </div>
+
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+              <div style="width: 100%;height: 46vh;display: flex;justify-content: space-evenly;align-items: flex-start;padding-top: 15px;background-color: ;">
+                <a href="/manajemen_earsip/dashboard">
+                  <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;">
+                    <img src="/images/template/e-arsip.png" alt="" style="border-radius: 100%;height: 120px;">
+                    <h4 style="margin-top: 15px;"><strong>E - ARSIP</strong></h4>
+                  </div>
+                </a>
+                
+
+
+                <a href="/manajemen_epegawai/dashboard">
+                  <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;">
+                    <img src="/images/template/e-pegawai.png" alt="" style="border-radius: 100%;height: 120px;">
+                    <h4 style="margin-top: 15px;"><strong>E - PEGAWAI</strong></h4>
+                  </div>
+                </a>
+                
+
+                <a href="/user">
+                <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;">
+                  <img src="/images/template/users.png" alt="" style="border-radius: 100%;height: 120px;">
+                  <h4 style="margin-top: 15px;"><strong>USER & DISPOSISI</strong></h4>
+                </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%}%>
+        <!-- Untuk Role Kepala Dinas -->
+        <%if(user.role==2){%>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+              <div style="width: 100%;height: 100vh;display: flex;justify-content: space-evenly;align-items: center;flex-wrap: wrap;">
+                <a href="/manajemen_kadin/surat_masuk">
+                <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;position: relative;">
+                  <img src="/images/template/surat-masuk.png" alt="" style="border-radius: 100%;height: 120px;">
+                  <h4 style="margin-top: 15px;"><strong>SURAT MASUK</strong></h4>
+
+                  <div style="width:50px;height: 50px;background-color:#353940 ;position: absolute;right:15px;top:-25px;border-radius: 100%;display: flex;justify-content: center;align-items: center;" class="shadow-lg">
+                    <strong><h2 class="m-t-0 m-b-0" style="color:#fff"><strong><%= jml%></strong></h2></strong>
+                  </div>
+                </div>
+                </a>
+
+                <a href="/manajemen_kadin/surat_keluar">
+                  <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;position: relative;">
+                    <img src="/images/template/surat-keluar.png" alt="" style="border-radius: 100%;height: 120px;">
+                    <h4 style="margin-top: 15px;"><strong>SURAT KELUAR</strong></h4>
+
+                    <!-- <div style="width:50px;height: 50px;background-color:#353940 ;position: absolute;right:15px;top:-25px;border-radius: 100%;display: flex;justify-content: center;align-items: center;" class="shadow-lg">
+                      <strong><h2 class="m-t-0 m-b-0"><strong>00</strong></h2></strong>
+                    </div> -->
+                  </div>
+                </a>
+                
+                <a href="/manajemen_kadin/persetujuan_laporan">
+                  <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;position: relative;">
+                    <img src="/images/template/surat-masuk.png" alt="" style="border-radius: 100%;height: 120px;">
+                    <h4 style="margin-top: 15px;"><strong>E - LAPORAN</strong></h4>
+                    <div style="width:50px;height: 50px;background-color:#353940 ;position: absolute;right:15px;top:-25px;border-radius: 100%;display: flex;justify-content: center;align-items: center;" class="shadow-lg">
+                      <strong><h2 class="m-t-0 m-b-0" style="color:#fff"><strong><%= count%></strong></h2></strong>
+                    </div>
+                    <!-- <div style="width:50px;height: 50px;background-color:#353940 ;position: absolute;right:15px;top:-25px;border-radius: 100%;display: flex;justify-content: center;align-items: center;" class="shadow-lg">
+                      <strong><h2 class="m-t-0 m-b-0"><strong>00</strong></h2></strong>
+                    </div> -->
+                  </div>
+                  </a>
+
+                <a href="/manajemen_kadin/kinerja">
+                  <div style="width: 220px;height: 220px;display: flex;justify-content: center;align-items: center;flex-direction: column;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;border-radius: 10px;">
+                    <img src="/images/template/e-pegawai.png" alt="" style="border-radius: 100%;height: 120px;">
+                    <h4 style="margin-top: 15px;"><strong>KINERJA PEGAWAI</strong></h4>
+                  </div>
+                </a>
+                
+
+                
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+        <%}%>
+        <script src="/plugins/jquery/jquery-1.11.1.min.js"></script>
+        <script src="/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/plugins/gsap/main-gsap.min.js"></script>
+        <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+        
+    </body>
+
+</html>

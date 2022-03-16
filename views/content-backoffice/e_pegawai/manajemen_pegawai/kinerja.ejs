@@ -1,0 +1,67 @@
+<% include ../../../template-backoffice/e_pegawai/header.ejs %>
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Kinerja Pegawai</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021 </span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/e_pegawai/footer.ejs %>
+<script type="text/javascript">
+window.onload = function () {
+  var dt = <%- JSON.stringify(data) %>;
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	exportEnabled: false,
+	theme: "light1", // "light1", "light2", "dark1", "dark2"
+	// title:{
+	// 	text: "Simple Column Chart with Index Labels"
+	// },
+  	axisX: {
+      interval:1,
+      labelFontSize: 12,
+      labelMaxWidth: 100,  
+    labelWrap: true
+    },
+
+    axisY: {
+      interval:1,
+      labelFontSize: 12,
+    },
+	data: [{
+		type: "column", //change type to bar, line, area, pie, etc
+		//indexLabel: "{y}", //Shows y value on all Data Points
+		indexLabelFontColor: "#5A5757",
+      	indexLabelFontSize: 16,
+		indexLabelPlacement: "outside",
+		dataPoints: dt
+	}]
+});
+chart.render();
+
+}
+</script>

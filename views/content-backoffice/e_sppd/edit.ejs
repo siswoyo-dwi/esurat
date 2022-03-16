@@ -1,0 +1,172 @@
+<% include ../../template-backoffice/e_sppd/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Edit Data Laporan</strong><br/>
+      <% if(data.length){%>
+      <small><%= data[0].perihal%></small>
+    <%}%>
+    </h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_esppd">Data</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <% if(data.length){%>
+              <form role="form" action="/manajemen_esppd/disposisi_laporan" method="POST" enctype="multipart/form-data">
+            <input type="hidden" class="form-control" name="id_sppd" id="id_sppd" value="<%= data[0].id%>">
+            <input type="hidden" class="form-control" name="penanggungJawabId" id="penanggungJawabId" value="<%= data[0].penanggungJawabId%>">
+            <input type="hidden" class="form-control" name="keterangan" id="keterangan" value="<%= data[0].keterangan%>">
+            <input type="hidden" class="form-control" name="id_surat_masuk" id="id_surat_masuk" value="<%= data[0].id_surat_masuk%>">
+            <input type="hidden" class="form-control" name="status" id="status" value="<%= data[0].status +1%>">
+
+            <input type="hidden" class="form-control" name="id_user" id="id_atasan" value="<%= atasan[0].id_user%>">
+            <input type="hidden" class="form-control" name="" id="id_sk" value="<%= sekertaris[0].id_user%>">
+            <input type="hidden" class="form-control" name="" id="role_atasan" value="<%= atasan[0].role%>">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label>Deskripsi</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <textarea name="deskripsi" id="editor" class="form-control" rows="10"><%-data[0].deskripsi%></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Upload Laporan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="file" class="form-control" name="fileLaporan" id="fileLaporan">
+                      <% if(data[0].fileLaporan){%>
+                      <a href="/foto/<%=data[0].fileLaporan%>" target="_blank">Lihat File</a>
+                      <%}%>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Upload Lampiran</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <input type="file" class="form-control" name="file" id="file">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Mengetahui</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <select name="" id="" class="form-control">
+                        <option value=""><%= atasan[0].fullname%></option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                  <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+               
+              </div>
+            </div>
+          </form>
+          <%}else{%>
+            <form role="form" action="/manajemen_esppd/submit_insert" method="POST" enctype="multipart/form-data">
+              <input type="hidden" class="form-control" name="id_surat_masuk" id="" value="<%= id%>">
+  
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="form-group">
+                    <label>Deskripsi</label>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <textarea name="deskripsi" id="editor" class="form-control" rows="10"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>Upload Laporan (Dokumen)</label>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <input type="file" class="form-control" name="fileLaporan" id="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Upload Lampiran (Foto)</label>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <input type="file" class="form-control" name="file" id="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Mengetahui</label>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        
+                        <select name="id_user" id="" class="form-control">
+                          <option value="<%= atasan[0].id_user%>"><%= atasan[0].fullname%></option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" class="form-control" id=""  name="id_dituju" value="<%= atasan[0].id_user%>">
+                  <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+                </div>
+              </div>
+            </form>
+            <%}%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021</span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../template-backoffice/e_sppd/footer.ejs %>
+<script type="text/javascript">
+CKEDITOR.replace( 'editor', {
+            toolbarGroups: [
+            { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+            { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+            { name: 'links', groups: [ 'links' ] },
+            { name: 'insert', groups: [ 'insert' ] },
+            { name: 'forms', groups: [ 'forms' ] },
+            { name: 'tools', groups: [ 'tools' ] },
+            { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+            { name: 'others', groups: [ 'others' ] },
+            '/',
+            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+            { name: 'styles', groups: [ 'styles' ] },
+            { name: 'colors', groups: [ 'colors' ] },
+            { name: 'about', groups: [ 'about' ] }
+            ],
+
+            removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format',
+            height: 310
+        });
+
+</script>

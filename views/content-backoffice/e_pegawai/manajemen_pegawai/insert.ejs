@@ -1,0 +1,285 @@
+<% include ../../../template-backoffice/e_pegawai/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Tambah Dokumen Pegawai</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_epegawai/pegawai">Data</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+
+      <div class="panel">
+        <div class="panel-content">
+          <form role="form" action="/manajemen_epegawai/pegawai/submit_insert" method="POST" enctype="multipart/form-data">
+            <input type="hidden" class="form-control" name="id_user" id="" value="<%= data[0].id_user%>">
+            <div class="tab tab-light clearfix"> 
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                  <li class="active"><a href="#tab2-1" data-toggle="tab" aria-expanded="false" style="padding: 15px;"><span class="font-custom" style="font-size: 14px;">PROFIL</span></a></li>
+                  <li><a href="#tab2-2" data-toggle="tab" aria-expanded="false" style="padding: 15px;"><span class="font-custom" style="font-size: 14px;">DATA DUKUNG</span></a></li>
+                  <li><a href="#tab2-3" data-toggle="tab" aria-expanded="false" style="padding: 15px;"><span class="font-custom" style="font-size: 14px;">SIMPAN DATA</span></a></li>
+
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content" style="border:none;padding:0;">
+                  <div role="tabpanel" class="tab-pane fade active in table-no-border" id="tab2-1">
+                    <table class="table table-bordered table-no-border">
+                      <tbody>
+                        <tr>
+                          <td style="width: 200px;">Nama Lengkap</td>
+                          <td style="width: 15px;">:</td>
+                          <td><%= data[0]['fullname'] %></td>
+                        </tr>
+
+                        <tr>
+                          <td>NIP</td>
+                          <td>:</td>
+                          <td><%= data[0].NIP%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Jabatan</td>
+                          <td>:</td>
+                          <td><%= data[0].id_jabatan%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Pangkat/Golongan</td>
+                          <td>:</td>
+                          <td><%= data[0].id_golongan%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Unit Kerja</td>
+                          <td>:</td>
+                          <td><%= data[0].id_unit_kerja%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Pendidikan Terakhir</td>
+                          <td>:</td>
+                          <td><%= data[0].pendidikan_terakhir%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Tempat, Tanggal Lahir</td>
+                          <td>:</td>
+                          <td><%= data[0].tempat_lahir%>, <%= data[0].tgl_lahir2%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Jenis Kelamin</td>
+                          <td>:</td>
+                          <td><%= data[0].jns_kelamin%>, <%= data[0].tgl_lahir2%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Golongan Darah</td>
+                          <td>:</td>
+                          <td><%= data[0].golongan_darah%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Alamat</td>
+                          <td>:</td>
+                          <td><%= data[0].alamat%></td>
+                        </tr>
+
+                        <tr>
+                          <td>No.Telepon</td>
+                          <td>:</td>
+                          <td><%= data[0].telp%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Email</td>
+                          <td>:</td>
+                          <td><%= data[0].email%></td>
+                        </tr>
+
+                        <tr>
+                          <td>Agama</td>
+                          <td>:</td>
+                          <td><%= data[0].agama%></td>
+                        </tr>
+
+                        <tr>
+                          <td>No. NPWP</td>
+                          <td>:</td>
+                          <td><%= data[0].no_npwp%></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    
+                  </div>
+      
+                  <div role="tabpanel" class="tab-pane fade" id="tab2-2">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Dokumen</th>
+                          <th>Upload File</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>SK (SK CPNS dan SK PNS dan Lainnya)</td>
+                          <td>
+                            <input type="file" class="form-control" name="sk_pns" id="">
+                            
+                          </td>
+                          
+                        </tr>
+
+                        <tr>
+                          <td>SPMT</td>
+                          <td>
+                            <input type="file" class="form-control" name="spmt" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>SKP</td>
+                          <td>
+                            <input type="file" class="form-control" name="skp" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>KTP</td>
+                          <td>
+                            <input type="file" class="form-control" name="ktp" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>KK</td>
+                          <td>
+                            <input type="file" class="form-control" name="kk" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Akta</td>
+                          <td>
+                            <input type="file" class="form-control" name="akta" id="">
+                           
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Ijazah</td>
+                          <td>
+                            <input type="file" class="form-control" name="ijazah" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>KGB (Kenaikan Gaji Berkala)</td>
+                          <td>
+                            <input type="file" class="form-control" name="kgb" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Karis/Karsu</td>
+                          <td>
+                            <input type="file" class="form-control" name="karis_karsu" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Taspen</td>
+                          <td>
+                            <input type="file" class="form-control" name="taspen" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Karpeg</td>
+                          <td>
+                            <input type="file" class="form-control" name="karpeg" id="">
+                           
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>ASKES/BPJS</td>
+                          <td>
+                            <input type="file" class="form-control" name="akses" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Sertifikat</td>
+                          <td>
+                            <input type="file" class="form-control" name="sertifikat" id="">
+                            
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>STTP (Latsar/Prajab)</td>
+                          <td>
+                            <input type="file" class="form-control" name="sttp" id="">
+                            
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div role="tabpanel" class="tab-pane fade" id="tab2-3">
+                    <div class="form-group">
+                      <label for="">Apakah anda yakin akan menyimpan data ini ?</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                          <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021</span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/e_pegawai/footer.ejs %>
+<script type="text/javascript">
+
+</script>

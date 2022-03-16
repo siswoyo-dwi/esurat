@@ -1,0 +1,231 @@
+<% include ../../../template-backoffice/e_pegawai/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Edit Data Pegawai</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_epegawai/pegawai">Data</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+
+      <div class="panel">
+        <div class="panel-content">
+          <form role="form" action="/manajemen_epegawai/pegawai/submit_edit" method="POST" enctype="multipart/form-data">
+            <input type="hidden" class="form-control" name="id_user" id="" value="<%= data[0].id_user%>">
+            <div class="row">
+              <div class="col-md-12 col-lg-12">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Dokumen</th>
+                      <th>Upload File</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>SK (SK CPNS dan SK PNS dan Lainnya)</td>
+                      <td>
+                        <input type="file" class="form-control" name="sk_pns" id="">
+                        <%if(data[0].sk_pns==null || data[0].sk_pns=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].sk_pns%>" target="_blank">Lihat File</a>
+                        <%}%>
+                        
+                      </td>
+                      
+                    </tr>
+
+                    <tr>
+                      <td>SPMT</td>
+                      <td>
+                        <input type="file" class="form-control" name="spmt" id="">
+                        <%if(data[0].spmt==null || data[0].spmt=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].spmt%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>SKP</td>
+                      <td>
+                        <input type="file" class="form-control" name="skp" id="">
+                        <%if(data[0].skp==null || data[0].skp=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].skp%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>KTP</td>
+                      <td>
+                        <input type="file" class="form-control" name="ktp" id="">
+                        <%if(data[0].ktp==null || data[0].ktp=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].ktp%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>KK</td>
+                      <td>
+                        <input type="file" class="form-control" name="kk" id="">
+                        <%if(data[0].kk==null || data[0].kk=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].kk%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Akta</td>
+                      <td>
+                        <input type="file" class="form-control" name="akta" id="">
+                        <%if(data[0].akta==null || data[0].akta=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].akta%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Ijazah</td>
+                      <td>
+                        <input type="file" class="form-control" name="ijazah" id="">
+                        <%if(data[0].ijazah==null || data[0].ijazah=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].ijazah%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>KGB (Kenaikan Gaji Berkala)</td>
+                      <td>
+                        <input type="file" class="form-control" name="kgb" id="">
+                        <%if(data[0].kgb==null || data[0].kgb=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].kgb%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Karis/Karsu</td>
+                      <td>
+                        <input type="file" class="form-control" name="karis_karsu" id="">
+                        <%if(data[0].karis_karsu==null || data[0].karis_karsu=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].karis_karsu%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Taspen</td>
+                      <td>
+                        <input type="file" class="form-control" name="taspen" id="">
+                        <%if(data[0].taspen==null || data[0].taspen=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].taspen%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Karpeg</td>
+                      <td>
+                        <input type="file" class="form-control" name="karpeg" id="">
+                        <%if(data[0].karpeg==null || data[0].karpeg=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].karpeg%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Akses</td>
+                      <td>
+                        <input type="file" class="form-control" name="akses" id="">
+                        <%if(data[0].akses==null || data[0].akses=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].akses%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Sertfikat</td>
+                      <td>
+                        <input type="file" class="form-control" name="sertifikat" id="">
+                        <%if(data[0].sertifikat==null || data[0].sertifikat=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].sertifikat%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>STTP (Latsar/Prajab)</td>
+                      <td>
+                        <input type="file" class="form-control" name="sttp" id="">
+                        <%if(data[0].sttp==null || data[0].sttp=='' ){%>
+                          Belum Diupload
+                        <%}else{%>
+                          <a href="/foto/<%= data[0].sttp%>" target="_blank">Lihat File</a>
+                        <%}%>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021</span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/e_pegawai/footer.ejs %>
+<script type="text/javascript">
+
+</script>

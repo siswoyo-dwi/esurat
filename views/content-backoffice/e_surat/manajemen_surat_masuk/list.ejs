@@ -1,0 +1,628 @@
+<% include ../../../template-backoffice/e_surat/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Data Surat Masuk</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a>
+        </li>
+        <li class="active">Data</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-header header-line">
+          <%if(user.role==0 || user.role==1){%>
+          <a class="btn btn-primary btn-embossed" href="/manajemen_esurat/surat_masuk/insert" role="button"><i
+              class="fa fa-plus" aria-hidden="true"></i>Tambah Data</a>
+        <%}%>
+
+        </div>
+        <div class="panel-content pagination2">
+          <table class="table table-bordered table-striped table-hover" id="data">
+            <thead>
+              <tr>
+                <th class="header" >No.</th>
+                <th class="header" >No. Agenda</th>
+                <th class="header" >No. Surat</th>
+                <th class="header" >Tanggal Surat</th>
+                <th class="header" >Pengirim</th>
+                <th class="header" >Perihal</th>
+                <th class="header" >Sifat Surat</th>
+                <th class="header" >File Surat </th>
+                <th class="header" >Publish </th>
+                <th class="header" >Option</th>
+
+              </tr>
+            </thead>
+
+            <tbody>
+              <% for(var i=0; i<data.length; i++){ %>
+              <tr>
+                <td><%= i+1%></td>
+                <td><%= data[i].no_agenda%></td>
+                <td><%= data[i].no_surat%></td>
+                <td><%= data[i].tgl_surat2%></td>
+                <td><%= data[i].pengirim%></td>
+                <td><%= data[i].perihal%></td>
+                <td><%= data[i].sifat_surat%></td>
+                <td><center><a href="/foto/<%= data[i].file_surat%>" target="_blank" class="btn btn-primary btn-sm btn-embossed"><i class="fa fa-download" aria-hidden="true"></i></a></center></td>
+                <td>
+                  
+                  <%if(data[i].publish==0){%>
+                    Ya
+                  <%}else{%>
+                      Tidak
+                  <%}%>
+                </td>
+
+                <td>
+                  <center>
+                    <%if(data[i].status_laporan==0){%>
+
+                    <%if(user.role==0 || user.role==1){%>
+                    <ul class="list-inline" style="text-align: center;">
+                      <li><a class="btn btn-warning btn-embossed btn-sm" href="/manajemen_esurat/surat_masuk/edit/<%= data[i].id_surat_masuk%>"
+                          role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+                      <li class="separator">|</li>
+                      <li><a class="btn btn-danger btn-embossed btn-sm" href="/manajemen_esurat/surat_masuk/delete/<%= data[i].id_surat_masuk%>" role="button"
+                          onclick="return confirm('Apakah anda yakin untuk menghapus data ini ?');"><i
+                            class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+                      
+                    </ul>
+        <%}%>
+
+
+                    <ul class="list-inline" style="text-align:center">
+                      <%if(data[i].status_disposisi==0){%>
+                      <li><button class="btn btn-info btn-embossed btn-sm" onclick="detil(<%= data[i].id_surat_masuk%>)">
+                        <%if(user.role==1){%>
+                          Sediaan
+                        <%}else if(user.role==0 || user.role==2 || user.role==3 || user.role==4 || user.role==6 || user.role==7 || user.role==9){%>
+                            Disposisi
+                        <%} else{%>
+                          <i class="fa fa-info" aria-hidden="true"></i>
+                          <%}%>
+                      </button></li>
+                      <%}else{%>
+                        <button class="btn btn-info btn-embossed btn-sm" onclick="detilSetelahDesposisi(<%= data[i].id_surat_masuk%>)">Telah di disposisi</button>
+                        <%}%>
+
+                      <%if(user.role!==1&&data[i].status_disposisi==0){%>
+                          <li><button class="btn btn-success btn-embossed btn-sm data-modal-kehadiran" data-id_surat_masuk="<%= data[i].id_surat_masuk%>" data-id_user="<%= user.id_user %>"   data-toggle="modal" data-target=".modal-kehadiran" role="button">Konfirmasi Kehadiran</button></li>
+         
+                      <%}%>
+                
+                      </ul>
+                      <%}else{%>
+                        Konfirmasi Kehadiran
+                      <%}%>
+                  </center>
+                </td>
+              </tr>
+              <%}%>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- modal kehadiran -->
+<div class="modal fade modal-kehadiran" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Konfirmasi Kehadiran</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Apakah anda akan menghadiri acara tersebut ?</label>
+              <select name="" id="pilihan" class="form-control">
+                <option value="">-- Pilih --</option>
+                <option value="ya">Ya</option>
+                <option value="tidak">Tidak</option>
+              </select>
+            </div>
+            <input hidden id="id_user" >
+            <input hidden id="penanggungJawab" >
+            <input hidden id="id_surat_masuk" >
+
+            <button onclick="buatLaporan()" class="btn btn-primary btn-embossed">Simpan</button>
+          </form>
+        </div>
+      </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- modal disposisi -->
+<div class="modal fade modal-disposisi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detail & Disposisi Surat Masuk</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab tab-light clearfix">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#tab2-1" data-toggle="tab" aria-expanded="false">DETAIL SURAT</a></li>
+            <li><a href="#tab2-2" data-toggle="tab" aria-expanded="false">
+              <%if(user.role==1){%>
+                SEDIAAN
+              <%}else if(user.role==0 || user.role==2 || user.role==3 || user.role==4 || user.role==6 || user.role==7 || user.role==9){%>
+                  DISPOSISI
+              <%} else{%>
+                DISPOSISI
+                <%}%>
+            </a></li>
+
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content" style="margin-top:0px;padding-left: 10px;padding-right: 10px;">
+            <div role="tabpanel" class="tab-pane fade active in" id="tab2-1">
+              <div class="row">
+                <div class="col-md-6 col-lg-6 table-no-border">
+                  <div style="overflow: hidden;">
+                    <table class="table table-bordered table-striped">
+                      <tbody>
+                        <tr>
+                          <td style="width: 140px;">No. Agenda</td>
+                          <td style="width: 5px;">:</td>
+                          <td id="noAgenda">-</td>
+                        </tr>
+        
+                        <tr>
+                          <td>No. Surat Masuk</td>
+                          <td>:</td>
+                          <td id="noSurat">-</td>
+                        </tr>
+        
+                        <tr>
+                          <td>Tanggal Surat Masuk</td>
+                          <td>:</td>
+                          <td id="tglSurat">-</td>
+                        </tr>
+        
+                        <tr>
+                          <td>Pengirim</td>
+                          <td>:</td>
+                          <td id="pengirim">-</td>
+                        </tr>
+        
+                        <tr>
+                          <td>Jenis Surat</td>
+                          <td>:</td>
+                          <td id="jenisSurat">-</td>
+                        </tr>
+        
+                        <tr>
+                          <td>Perihal</td>
+                          <td>:</td>
+                          <td id="perihal">-</td>
+                        </tr>
+        
+                        <tr>
+                          <td>Tanggal Pelaksanaan</td>
+                          <td>:</td>
+                          <td><span id="tglMulai"></span> s/d <span id="tglAkhir"></span></td>
+                        </tr>
+        
+                        <tr>
+                          <td>Waktu</td>
+                          <td>:</td>
+                          <td><span id="waktuMulai"></span> s/d <span id="waktuAkhir"></span></td>
+                        </tr>
+        
+                        <tr>
+                          <td>Tempat</td>
+                          <td>:</td>
+                          <td id="tempat">-</td>
+                        </tr>
+        
+                        <tr>
+                          <td>Sifat Surat</td>
+                          <td>:</td>
+                          <td id="sifatSurat">-</td>
+                        </tr>
+        
+                        <tr>
+                          <td>Catatan</td>
+                          <td>:</td>
+                          <td id="catatan">-</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                </div>
+                <div class="col-md-6 col-lg-6">
+                  <div style="width: 100%;" id="fileSurat">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="tab2-2">
+              <%if(user.role==0 ||user.role==1 || user.role==2 || user.role==3 || user.role==4 || user.role==6 || user.role==7 || user.role==9){%>
+              <div class="row">
+                <div class="col-md-12 col-lg-12">
+              
+                    <!-- <div class="form-group">
+                      <label>Tanggal Disposisi</label>
+                      <input type="text" class="form-control" name="" id="tgl1">
+                    </div> -->
+                    
+                    <input type="hidden" class="form-control" name="" id="idSurat">
+                    <div class="form-group">
+                      <%if(user.role==1){%>
+                        <label>Sediaan</label>
+
+                        <%}else{%>
+                          <label>Disposisi</label>
+
+                      <%}%>
+                      <select name="disposisi" id="disposisi" class="form-control">
+                        <option value="">-- Pilih --</option>
+                      
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Keterangan 
+                        <%if(user.role==1){%>
+                          Sediaan
+                        <%}else if(user.role==0 || user.role==2 || user.role==3 || user.role==4 || user.role==6 || user.role==7 || user.role==9){%>
+                            Disposisi
+                        <%} else{%>
+                          Disposisi
+                          <%}%>
+
+                      </label>
+                      <textarea class="form-control" name="" id="ketDis" rows="2"></textarea>
+                    </div>
+
+                    
+                    <a href="#" onClick="insertDisposisi()" type="submit" class="btn btn-primary btn-embossed">Simpan</a>
+               
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 col-lg-1">
+                  <hr>
+                </div>
+              </div>
+              <%}else{%>
+                  
+              <%}%>
+
+              <div class="row">
+                <div class="col-md-12 col-lg-12">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Tanggal Sediaan</th>
+                        <th>Sediaan</th>
+                        <th>Dari</th>
+                        <th>Keterangan</th>
+                        <th>Option</th>
+                      </tr>
+                    </thead>
+
+                    <tbody id="tabelDisposisi">
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-detail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detail Surat Masuk</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 col-lg-6 table-no-border">
+            <div style="overflow: hidden;">
+              <table class="table table-bordered table-striped">
+                <tbody>
+                  <tr>
+                    <td style="width: 140px;">No. Agenda</td>
+                    <td style="width: 5px;">:</td>
+                    <td id="noAgenda1">-</td>
+                  </tr>
+  
+                  <tr>
+                    <td>No. Surat Masuk</td>
+                    <td>:</td>
+                    <td id="noSurat1">-</td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tanggal Surat Masuk</td>
+                    <td>:</td>
+                    <td id="tglSurat1">-</td>
+                  </tr>
+  
+                  <tr>
+                    <td>Pengirim</td>
+                    <td>:</td>
+                    <td id="pengirim1">-</td>
+                  </tr>
+  
+                  <tr>
+                    <td>Jenis Surat</td>
+                    <td>:</td>
+                    <td id="jenisSurat1">-</td>
+                  </tr>
+  
+                  <tr>
+                    <td>Perihal</td>
+                    <td>:</td>
+                    <td id="perihal1">-</td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tanggal Pelaksanaan</td>
+                    <td>:</td>
+                    <td><span id="tglMulai1"></span> s/d <span id="tglAkhir1"></span></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Waktu</td>
+                    <td>:</td>
+                    <td><span id="waktuMulai1"></span> s/d <span id="waktuAkhir1"></span></td>
+                  </tr>
+  
+                  <tr>
+                    <td>Tempat</td>
+                    <td>:</td>
+                    <td id="tempat1">-</td>
+                  </tr>
+  
+                  <tr>
+                    <td>Sifat Surat</td>
+                    <td>:</td>
+                    <td id="sifatSurat1">-</td>
+                  </tr>
+  
+                  <tr>
+                    <td>Catatan</td>
+                    <td>:</td>
+                    <td id="catatan1">-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <div style="width: 100%;" id="fileSurat1">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2021 </span>
+        <span>Pemerintah Kabupaten Sukoharjo | Badan Perencanaan, Penelitian, dan Pengembangan Daerah</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../../template-backoffice/e_surat/footer.ejs %>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#data').DataTable({
+      "language": {
+        "sProcessing": "Sedang memproses...",
+        "sLengthMenu": "_MENU_",
+        "sZeroRecords": "Tidak ditemukan data yang sesuai",
+        "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+        "sInfoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
+        "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "sInfoPostFix": "",
+        "sUrl": "",
+        "oPaginate": {
+          "sFirst": "Pertama",
+          "sPrevious": "Sebelumnya",
+          "sNext": "Selanjutnya",
+          "sLast": "Terakhir"
+        }
+      },
+      "columnDefs": [{
+        "width": "100px",
+        "targets": 9
+      }],
+    });
+  });
+  $(document).on("click", ".data-modal-kehadiran", function () {
+      var id_user = $(this).data('id_user');
+      $("#id_user").val(id_user);
+      var id_surat_masuk = $(this).data('id_surat_masuk');
+      $("#id_surat_masuk").val(id_surat_masuk);
+      console.log(penanggungJawab,id_surat_masuk);
+  })
+  function buatLaporan() {
+    const id_user = document.getElementById('id_user').value
+    const id_surat_masuk = document.getElementById('id_surat_masuk').value
+    console.log(id_user,id_surat_masuk);
+    $.post("/manajemen_esppd/submit_insert",
+  {
+    penanggungJawabId:id_user,
+    id_surat_masuk:id_surat_masuk
+
+  });
+}
+  function detil(id) {
+    $.ajax({
+      type: "GET",
+      async: false,
+      global: false,
+      url: "/manajemen_esurat/get_surat_masuk/" + id,
+      dataType: 'json',
+      success: function (data) {
+        $("#idSurat").val(data.data[0].id);
+        $("#noAgenda").html(data.data[0].no_agenda);
+        $("#noSurat").html(data.data[0].no_surat);
+        $("#tglSurat").html(data.data[0].tgl_surat2);
+        $("#pengirim").html(data.data[0].pengirim);
+        $("#jenisSurat").html(data.data[0].jenis_surat);
+        $("#perihal").html(data.data[0].perihal);
+        $("#tglMulai").html(data.data[0].tgl_mulai2);
+        $("#tglAkhir").html(data.data[0].tgl_akhir2);
+        $("#waktuMulai").html(data.data[0].waktu_mulai);
+        $("#waktuAkhir").html(data.data[0].waktu_akhir);
+        $("#tempat").html(data.data[0].tempat);
+        $("#sifatSurat").html(data.data[0].sifat_surat);
+        $("#catatan").html(data.data[0].catatan);
+        $("#fileSurat").html('<center><img src="/foto/' + data.data[0].file_surat + '"style="width:100%;height:460px"></center>');
+        $("#idne").val(id);      
+        $('#disposisi').empty();    
+        $.getJSON('/user/get_user_disposisi', function(dt){
+          // console.log(dt);
+          dt.forEach(function(itm){
+            let gol ="";
+            if(itm.role==2){
+              gol="Kepala Badan"
+            }else if(itm.role==3){
+              gol="Sekretaris"
+            }else if(itm.role==4){
+              gol="Kasubag"
+            }else if(itm.role==5){
+              gol="Pelaksana/Staff"
+            }else if(itm.role==6){
+              gol="Kabid"
+            }else if(itm.role==7){
+              gol="Sub Koordinator"
+            }else if(itm.role==8){
+              gol="Staff"
+            }else if(itm.role==9){
+              gol="Jabatan Fungsional"
+            }
+            $('#disposisi').append(`<option value="${itm.id_user}">${gol} - ${itm.fullname} </option>`);   
+          })
+        })                     
+        $(".modal-disposisi").modal("toggle");
+        loadTabel(id)
+      }
+    })
+  }
+  function detilSetelahDesposisi(id) {
+    $.ajax({
+      type: "GET",
+      async: false,
+      global: false,
+      url: "/manajemen_esurat/get_surat_masuk/" + id,
+      dataType: 'json',
+      success: function (data) {
+        $("#idSurat1").val(data.data[0].id);
+        $("#noAgenda1").html(data.data[0].no_agenda);
+        $("#noSurat1").html(data.data[0].no_surat);
+        $("#tglSurat1").html(data.data[0].tgl_surat2);
+        $("#pengirim1").html(data.data[0].pengirim);
+        $("#jenisSurat1").html(data.data[0].jenis_surat);
+        $("#perihal1").html(data.data[0].perihal);
+        $("#tglMulai1").html(data.data[0].tgl_mulai2);
+        $("#tglAkhir1").html(data.data[0].tgl_akhir2);
+        $("#waktuMulai1").html(data.data[0].waktu_mulai);
+        $("#waktuAkhir1").html(data.data[0].waktu_akhir);
+        $("#tempat1").html(data.data[0].tempat);
+        $("#sifatSurat1").html(data.data[0].sifat_surat);
+        $("#catatan1").html(data.data[0].catatan);
+        $("#fileSurat1").html('<center><a href="/foto/' + data.data[0].file_surat + '" data-fancybox="' + data.data[0].id + '" title="' + data.data[0].perihal + '"><img src="/foto/' + data.data[0].file_surat + '" style="width:100%;height:460px"></center>');
+        $("#idne1").val(id);                               
+        $(".modal-detail").modal("toggle");
+      }
+    })
+   
+   
+  }
+function loadTabel(id){
+  $('#tabelDisposisi').empty();
+  $.getJSON('/manajemen_esurat/json_disposisi/'+id, function(data){
+      console.log(data);
+    
+      data.data.forEach((itm, idx)=>{
+        $('#tabelDisposisi').append(` <tr>
+                        <td>${idx+1}</td>
+                        <td>${itm.waktu}</td>
+                        <td>${itm.disposisi}</td>
+                        <td>${itm.dari}</td>
+                        <td>${itm.ket}</td>
+                        <td>
+                          <center><button class="btn btn-danger btn-sm btn-embossed"><i
+                            class="fa fa-trash-o" aria-hidden="true" onClick="busek(${itm.id})"></i></button></center>
+                          
+                        </td>
+                      </tr>`)
+      })
+    })
+}
+
+
+function busek(id){
+  $.getJSON('/manajemen_esurat/hapus_disposisi/'+id, function(data){
+      console.log(data);
+        loadTabel($("#idSurat").val());
+    })
+}
+  function insertDisposisi() {
+    $.post("/manajemen_esurat/disposisi/submit_insert",
+  {
+    idSuratMasuk: $("#idSurat").val(),
+    id_disposisi: $("#disposisi").val(),
+    ket: $("#ketDis").val(),
+  },
+  function(data, status){
+    alert(data.status);
+    loadTabel($("#idSurat").val());
+    location.href = '/manajemen_esurat/dashboard'
+  });
+  }
+</script>
